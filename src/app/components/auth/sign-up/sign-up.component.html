@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Регистрация</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form class="sign-up-form" (ngSubmit)="signUp()" [formGroup]="signUpForm">
+    <ion-item>
+      <ion-label position="stacked">Имя</ion-label>
+      <ion-input name="name" type="text" placeholder="Имя" formControlName="firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Фамилия</ion-label>
+      <ion-input name="name" type="text" placeholder="Фамилия" formControlName="lastName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input name="email" type="email" [placeholder]="'Email'" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Телефон</ion-label>
+      <ion-input name="phone" type="text" [placeholder]="'Телефон'" formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Пароль</ion-label>
+      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'" [placeholder]="'Пароль'" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Подтверждение</ion-label>
+      <ion-input name="confirm" [type]="showPassword.checked ? 'string' : 'password'" [placeholder]="'Подтверждение пароля'"
+                 formControlName="confirmPassword"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Показать пароль</ion-label>
+      <ion-checkbox #showPassword [value]="false"></ion-checkbox>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col class="agreements" size="5">
+          <ion-item lines="none">
+            <ion-label position="stacked">Принять</ion-label>
+            <ion-checkbox formControlName="agreements"></ion-checkbox>
+          </ion-item>
+        </ion-col>
+        <ion-col class="agreements" size="7">
+          <ion-item-group>
+            <ion-label class="agreements-item">Условия</ion-label>
+            <ion-router-link class="agreements-item">Пользовательское соглашение</ion-router-link>
+            <ion-label class="agreements-item">и</ion-label>
+          </ion-item-group>
+          <ion-item-group>
+            <ion-router-link class="agreements-item">Условие конфиденциальности</ion-router-link>
+          </ion-item-group>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-item-group class="sign-up-form-buttons-group">
+      <ion-button [disabled]="signUpForm.invalid" type="submit" expand="full">Регистрация</ion-button>
+      <ion-item-divider class="or">
+        <ion-label class="or-title">
+          или
+        </ion-label>
+      </ion-item-divider>
+      <ion-button routerLink="/auth/login" expand="full" type="button">Вход</ion-button>
+      <ion-item-divider>
+      </ion-item-divider>
+      <ion-button class="reset-pass" color="white"
+                  routerLink="/auth/recover" expand="full" type="button">Забыли пароль?</ion-button>
+    </ion-item-group>
+  </form>
+</ion-content>

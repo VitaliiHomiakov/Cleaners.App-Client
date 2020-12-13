@@ -1,15 +1,23 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CoreComponent } from './components/core/core.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'folder/Inbox',
-    pathMatch: 'full'
+    path: 'core',
+    component: CoreComponent,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./components/core/core.module').then(m => m.CoreModule)
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+    path: 'auth',
+    loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: '',
+    redirectTo: 'auth',
+    pathMatch: 'full'
   }
 ];
 

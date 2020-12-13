@@ -1,0 +1,24 @@
+.login-form {
+  &-buttons-group {
+    padding: 10px;
+
+    .or {
+      padding: 0;
+      &-title {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .reset-pass {
+      color: black;
+    }
+  }
+
+
+}

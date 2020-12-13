@@ -1,0 +1,26 @@
+.sign-up-form {
+
+  &-buttons-group {
+    padding: 10px;
+
+    .or {
+      padding: 0;
+      &-title {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .reset-pass {
+      color: black;
+    }
+  }
+
+  .agreements {
+    align-self: center;
+
+    &-item {
+      padding: 0 2px;
+    }
+  }
+}

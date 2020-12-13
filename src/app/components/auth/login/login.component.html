@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-title>Авторизация</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form class="login-form" (ngSubmit)="login()" [formGroup]="loginForm">
+    <ion-item>
+      <ion-label position="stacked">Введите email или телефон</ion-label>
+      <ion-input name="email" type="email" [placeholder]="'Введите email или телефон'" formControlName="emailOrPhone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Пасспорт</ion-label>
+      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'" [placeholder]="'Пасспорт'" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Показать пароль</ion-label>
+      <ion-checkbox #showPassword [value]="false"></ion-checkbox>
+    </ion-item>
+    <ion-item-group class="login-form-buttons-group">
+      <ion-button type="submit" [disabled]="loginForm.invalid" expand="full">Вход</ion-button>
+      <ion-item-divider class="or">
+        <ion-label class="or-title">
+          или
+        </ion-label>
+      </ion-item-divider>
+      <ion-button routerLink="/auth/sign-up" expand="full" type="button">Регистрация</ion-button>
+      <ion-item-divider>
+      </ion-item-divider>
+      <ion-button class="reset-pass" color="white" routerLink="/auth/recover" expand="full" type="button">Забыли пароль?</ion-button>
+    </ion-item-group>
+  </form>
+</ion-content>
