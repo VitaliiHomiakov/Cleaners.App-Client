@@ -18,6 +18,8 @@ import {AuthService} from './services/auth.service';
 import {UserService} from './services/user.service';
 import {AlertsService} from './services/alerts.service';
 import {AuthGuard} from './guard/auth.guard';
+import {environment} from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,6 +31,10 @@ import {AuthGuard} from './guard/auth.guard';
     HttpClientModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([AuthEffects, UserEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
     StatusBar,

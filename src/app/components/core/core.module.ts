@@ -6,6 +6,7 @@ import {CoreComponent} from './core.component';
 import {RouterModule} from '@angular/router';
 import {UserModule} from './user/user.module';
 import {CoreRoutingModule} from './core-routing.module';
+import {ReactiveComponentModule} from '@ngrx/component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import {CoreRoutingModule} from './core-routing.module';
     ReactiveFormsModule,
     RouterModule,
     CoreRoutingModule,
-    UserModule
+    UserModule,
+    ReactiveComponentModule
   ],
   declarations: [CoreComponent]
 })

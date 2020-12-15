@@ -1,60 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import {select, Store} from '@ngrx/store';
+import {AppState} from '../../store/reducers';
+import * as userActions from '../../store/actions/user.actions';
+import {isUserLoading, selectUser} from '../../store/selectors/user.selectors';
+import {filter, map, take, withLatestFrom} from 'rxjs/operators';
+import {Statuses} from '../../app.constants';
+import {User} from '../../interfaces/user.interface';
 
 @Component({
   selector: 'cleaners-core',
   templateUrl: 'core.component.html',
-  styleUrls: ['core.component.scss']
+  styleUrls: ['core.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoreComponent implements OnInit {
 
-  public selectedIndex = 0;
-  public appPages = [
+  user$ = this.store$.pipe(
+    select(selectUser),
+    filter(user => user.status === Statuses.LOADED),
+    map(user => user.data as User)
+  );
+
+  selectedIndex = 0;
+  appPages = [
     {
-      title: 'Inbox',
-      url: '/core/folder/Inbox',
-      icon: 'mail'
+      title: 'Баланс',
+      url: '/core/user',
+      icon: 'person-outline'
     },
     {
-      title: 'Outbox',
-      url: '/core/folder/Outbox',
-      icon: 'paper-plane'
+      title: 'Пригласить',
+      url: '/core/invite',
+      icon: 'add-circle-outline'
     },
     {
-      title: 'Favorites',
+      title: 'Безопасность',
       url: '/core/folder/Favorites',
-      icon: 'heart'
+      icon: 'lock-closed-outline'
     },
     {
-      title: 'Archived',
-      url: '/core/folder/Archived',
-      icon: 'archive'
-    },
-    {
-      title: 'Trash',
-      url: '/core/folder/Trash',
-      icon: 'trash'
-    },
-    {
-      title: 'Spam',
-      url: '/core/folder/Spam',
-      icon: 'warning'
+      title: 'Выход',
+      url: '/auth/logout',
+      icon: 'exit-outline'
     }
   ];
 
   constructor(
-
+    private store$: Store<AppState>
   ) {
 
   }
 
   ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+    this.store$.pipe(
+      select(selectUser),
+      withLatestFrom(this.store$.pipe(select(isUserLoading))),
+      filter(([user, isLoading]) => !user.data?.id && !isLoading),
+      take(1)
+    ).subscribe(() => this.store$.dispatch(userActions.GetProfile()));
   }
 }

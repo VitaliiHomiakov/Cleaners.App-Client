@@ -1,16 +1,19 @@
 import {Statuses} from '../../app.constants';
 import {Action, createReducer, on} from '@ngrx/store';
 import * as userActions from '../actions/user.actions';
+import {User} from '../../interfaces/user.interface';
 
 
 export interface UserState {
-  data: any;
+  data: User;
   status: Statuses;
+  barcode: string;
 }
 
 export const initialState: UserState = {
-  data: null,
-  status: Statuses.UNINITIALIZED
+  data: {} as User,
+  status: Statuses.UNINITIALIZED,
+  barcode: ''
 };
 
 const user = createReducer(
@@ -27,6 +30,12 @@ const user = createReducer(
       ...state,
       data: null,
       status: Statuses.LOADING
+    };
+  }),
+  on(userActions.SetUserBarcode, (state, payload) => {
+    return {
+      ...state,
+      barcode: payload.barcode
     };
   }),
   on(userActions.ResetUser, (state => ({...state, data: null, status: Statuses.UNINITIALIZED})))

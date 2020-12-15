@@ -16,5 +16,13 @@ export class UserEffects {
     ))
   ));
 
+  getBarcode$ = createEffect(() => this.actions$.pipe(
+    ofType(userActions.GetProfile),
+    mergeMap(() => this.userService.getBarCode().pipe(
+      map(({barcode}) => userActions.SetUserBarcode({barcode})),
+      catchError(error => throwError(error))
+    ))
+  ));
+
   constructor(private actions$: Actions, private userService: UserService) {}
 }

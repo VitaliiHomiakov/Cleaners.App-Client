@@ -18,9 +18,10 @@ export class AuthEffects {
     switchMap(action => this.authService.login(action.params).pipe(
       tap(tokens => {
         localStorage.setItem('token', tokens.token);
+        localStorage.setItem('refreshToken', tokens.refreshToken);
         this.router.navigateByUrl('/core').then();
       }),
-      map(() => userActions.GetProfile()),
+      mergeMap(() => [userActions.GetProfile(), userActions.GetUserBarcode()]),
       catchError(error => throwError(error))
     ))
   ));
