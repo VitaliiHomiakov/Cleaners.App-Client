@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Login, ResetPassword, SignedUp, SignUp, Tokens} from '../interfaces/auth.interface';
-import {StatusResponse} from '../interfaces/common.interface';
+import {ResponseMessage, StatusResponse} from '../interfaces/common.interface';
 
 @Injectable()
 export class AuthService {
@@ -10,6 +10,12 @@ export class AuthService {
 
   login(loginParams: Login): Observable<Tokens> {
     return this.http.post<Tokens>('/auth/login', loginParams);
+  }
+
+  logout(): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>('/auth/logout', {
+      refreshToken: localStorage.getItem('refreshToken')
+    });
   }
 
   signUp(signUpParams: SignUp): Observable<SignedUp> {

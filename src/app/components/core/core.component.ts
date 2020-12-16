@@ -7,6 +7,7 @@ import {isUserLoading, selectUser} from '../../store/selectors/user.selectors';
 import {filter, map, take, withLatestFrom} from 'rxjs/operators';
 import {Statuses} from '../../app.constants';
 import {User} from '../../interfaces/user.interface';
+import {Logout} from '../../store/actions/auth.actions';
 
 @Component({
   selector: 'cleaners-core',
@@ -41,7 +42,7 @@ export class CoreComponent implements OnInit {
     },
     {
       title: 'Выход',
-      url: '/auth/logout',
+      url: '/auth',
       icon: 'exit-outline'
     }
   ];
@@ -59,5 +60,12 @@ export class CoreComponent implements OnInit {
       filter(([user, isLoading]) => !user.data?.id && !isLoading),
       take(1)
     ).subscribe(() => this.store$.dispatch(userActions.GetProfile()));
+  }
+
+  open(i: number, url: string): void {
+    this.selectedIndex = i;
+    if (url.includes('auth')) {
+      this.store$.dispatch(Logout());
+    }
   }
 }

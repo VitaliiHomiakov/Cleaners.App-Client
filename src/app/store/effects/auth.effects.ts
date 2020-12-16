@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {throwError} from 'rxjs';
-import {catchError, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {catchError, mergeMap, switchMap, tap} from 'rxjs/operators';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as authActions from '../actions/auth.actions';
 import {AuthService} from '../../services/auth.service';
@@ -18,13 +18,25 @@ export class AuthEffects {
     switchMap(action => this.authService.login(action.params).pipe(
       tap(tokens => {
         localStorage.setItem('token', tokens.token);
-        localStorage.setItem('refreshToken', tokens.refreshToken);
+        localStorage.setItem('refreshToken', tokens.refresh_token);
         this.router.navigateByUrl('/core').then();
       }),
       mergeMap(() => [userActions.GetProfile(), userActions.GetUserBarcode()]),
       catchError(error => throwError(error))
     ))
   ));
+
+  logout$ = createEffect(() => this.actions$.pipe(
+    ofType(authActions.Logout),
+    mergeMap(() => this.authService.logout().pipe(
+      tap(() => {
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('token');
+        this.router.navigateByUrl('/auth').then();
+      }),
+      catchError(error => throwError(error))
+    ))
+  ), {dispatch: false});
 
   signUp$ = createEffect(() => this.actions$.pipe(
     ofType(authActions.SignUp),

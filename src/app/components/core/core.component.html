@@ -1,12 +1,12 @@
 <ion-split-pane contentId="main-content">
   <ion-menu contentId="main-content" type="overlay">
-    <ion-content *ngrxLet="user$ as user">
+    <ion-content *ngIf="user$ | async as user">
       <ion-list id="inbox-list">
         <ion-list-header>Привет</ion-list-header>
         <ion-note [innerText]="user.firstname"></ion-note>
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-          <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+          <ion-item (click)="open(i, p.url)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex === i">
             <ion-icon slot="start" [icon]="p.icon"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>
           </ion-item>

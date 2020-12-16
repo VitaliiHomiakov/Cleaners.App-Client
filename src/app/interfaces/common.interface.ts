@@ -16,3 +16,6 @@ export interface CommonParams {
   limit?: number;
 }
 
+export interface ResponseMessage {
+  message: string;
+}

@@ -5,7 +5,7 @@ export interface Login {
 
 export interface Tokens {
   token: string;
-  refreshToken: string;
+  refresh_token: string;
 }
 
 export interface SignUp {
