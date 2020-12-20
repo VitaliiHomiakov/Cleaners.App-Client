@@ -6,6 +6,7 @@ import * as authActions from '../actions/auth.actions';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import * as userActions from '../actions/user.actions';
+import * as historyActions from '../actions/history.actions';
 import {Store} from '@ngrx/store';
 import {AppState} from '@capacitor/core';
 
@@ -21,7 +22,7 @@ export class AuthEffects {
         localStorage.setItem('refreshToken', tokens.refresh_token);
         this.router.navigateByUrl('/core').then();
       }),
-      mergeMap(() => [userActions.GetProfile(), userActions.GetUserBarcode()]),
+      mergeMap(() => [userActions.GetProfile(), userActions.GetUserBarcode(), historyActions.GetHistory({params: {}})]),
       catchError(error => throwError(error))
     ))
   ));

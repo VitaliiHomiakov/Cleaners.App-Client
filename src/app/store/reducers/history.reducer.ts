@@ -1,14 +1,22 @@
 import {Statuses} from '../../app.constants';
 import {Action, createReducer, on} from '@ngrx/store';
 import * as historyActions from '../actions/history.actions';
+import {Pagination} from '../../interfaces/common.interface';
+import * as constants from '../../app.constants';
 
 export interface HistoryState {
-  data: any;
+  data: {
+    items: any[],
+    pagination: Pagination
+  };
   status: Statuses;
 }
 
 export const initialState: HistoryState = {
-  data: {} as any,
+  data: {
+   items: [],
+    pagination: {...constants.Pagination}
+  },
   status: Statuses.UNINITIALIZED,
 };
 
@@ -17,6 +25,7 @@ const history = createReducer(
   on(historyActions.SetHistory, (state, payload) => {
     return {
       ...state,
+      data: payload.history
     };
   }),
 );

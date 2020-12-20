@@ -18,7 +18,7 @@ export class UserEffects {
   ));
 
   getBarcode$ = createEffect(() => this.actions$.pipe(
-    ofType(userActions.GetProfile),
+    ofType(userActions.GetUserBarcode),
     switchMap(() => this.userService.getBarCode().pipe(
       map(({barcode}) => userActions.SetUserBarcode({barcode})),
       catchError(error => throwError(error))

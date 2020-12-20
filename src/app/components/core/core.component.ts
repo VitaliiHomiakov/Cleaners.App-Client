@@ -3,6 +3,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {AppState} from '../../store/reducers';
 import * as userActions from '../../store/actions/user.actions';
+import * as historyActions from '../../store/actions/history.actions';
 import {isUserLoading, selectUser} from '../../store/selectors/user.selectors';
 import {filter, map, take, withLatestFrom} from 'rxjs/operators';
 import {Statuses} from '../../app.constants';
@@ -66,7 +67,11 @@ export class CoreComponent implements OnInit {
       withLatestFrom(this.store$.pipe(select(isUserLoading))),
       filter(([user, isLoading]) => !user.data?.id && !isLoading),
       take(1)
-    ).subscribe(() => this.store$.dispatch(userActions.GetProfile()));
+    ).subscribe(() => {
+      this.store$.dispatch(userActions.GetProfile());
+      this.store$.dispatch(userActions.GetUserBarcode());
+      this.store$.dispatch(historyActions.GetHistory({params: {}}));
+    });
   }
 
   open(i: number, url: string): void {
