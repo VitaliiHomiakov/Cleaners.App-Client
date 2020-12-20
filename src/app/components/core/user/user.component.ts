@@ -1,9 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectUser} from '../../../store/selectors/user.selectors';
-import {filter, map} from 'rxjs/operators';
+import {filter} from 'rxjs/operators';
 import {Statuses} from '../../../app.constants';
-import {User} from '../../../interfaces/user.interface';
 import {AppState} from '../../../store/reducers';
 import {GetProfile} from '../../../store/actions/user.actions';
 
@@ -32,7 +31,7 @@ export class UserComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 

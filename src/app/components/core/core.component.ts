@@ -8,6 +8,7 @@ import {filter, map, take, withLatestFrom} from 'rxjs/operators';
 import {Statuses} from '../../app.constants';
 import {User} from '../../interfaces/user.interface';
 import {Logout} from '../../store/actions/auth.actions';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'cleaners-core',
@@ -32,8 +33,13 @@ export class CoreComponent implements OnInit {
     },
     {
       title: 'Пригласить',
-      url: '/core/invite',
+      url: '/core/invitations',
       icon: 'add-circle-outline'
+    },
+    {
+      title: 'История',
+      url: '/core/history',
+      icon: 'receipt-outline'
     },
     {
       title: 'Безопасность',
@@ -48,7 +54,8 @@ export class CoreComponent implements OnInit {
   ];
 
   constructor(
-    private store$: Store<AppState>
+    private store$: Store<AppState>,
+    private router: Router
   ) {
 
   }
@@ -67,5 +74,9 @@ export class CoreComponent implements OnInit {
     if (url.includes('auth')) {
       this.store$.dispatch(Logout());
     }
+  }
+
+  isSelected(url: string): boolean {
+    return this.router.url.includes(url);
   }
 }

@@ -11,13 +11,19 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-card>
-    <ion-card-header>Ваша карта</ion-card-header>
+    <ion-card-header>
+      <ion-icon name="card-outline"></ion-icon>
+      Ваша карта
+    </ion-card-header>
     <ion-card-content>
       <ion-img [src]="'data:image/jpeg;base64,' + user.barcode"></ion-img>
     </ion-card-content>
   </ion-card>
   <ion-card>
-    <ion-card-header>Баланс</ion-card-header>
+    <ion-card-header>
+      <ion-icon name="wallet-outline"></ion-icon>
+      Баланс
+    </ion-card-header>
     <ion-card-content>
       <ion-card-title [innerText]="user.data.balance"></ion-card-title>
     </ion-card-content>

@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./user/user.module').then(m => m.UserModule)
   },
   {
+    path: 'invitations',
+    loadChildren: () => import('./invitations/invitations.module').then(m => m.InvitationsModule)
+  },
+  {
     path: '',
     redirectTo: 'user',
     pathMatch: 'full'

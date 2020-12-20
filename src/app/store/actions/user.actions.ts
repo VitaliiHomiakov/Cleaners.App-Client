@@ -11,3 +11,4 @@ export const LoadingUser = createAction(`${TYPE} Loading User`);
 export const ResetUser = createAction(`${TYPE} Reset User`);
 export const UpdateUser = createAction(`${TYPE} Update User`, props<{user: User}>());
 export const UpdateUserPassword = createAction(`${TYPE} Update User Password`, props<{passwords: any}>());
+export const SendInvite = createAction(`${TYPE} Send Invite`, props<{params: any}>());

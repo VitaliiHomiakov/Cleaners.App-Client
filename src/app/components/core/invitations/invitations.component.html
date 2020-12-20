@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Приглашения</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content (ngSubmit)="sendInvite()" [formGroup]="invitationForm">
+  <ion-list>
+    <ion-radio-group formControlName="type">
+      <ion-list-header>
+        <ion-label>
+          Отправить приглашение
+        </ion-label>
+      </ion-list-header>
+
+      <ion-item class="radio">
+        <ion-card class="radio-item email">
+          <ion-card-content>
+            <ion-icon name="mail-outline"></ion-icon>
+            <ion-label>EMAIL</ion-label>
+          </ion-card-content>
+        </ion-card>
+        <ion-radio value="email"></ion-radio>
+      </ion-item>
+
+      <ion-item class="radio">
+        <ion-card class="radio-item sms">
+          <ion-card-content>
+            <ion-icon name="call-outline"></ion-icon>
+            <ion-label>СМС</ion-label>
+          </ion-card-content>
+        </ion-card>
+        <ion-radio value="phone"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <ion-item [hidden]="invitationForm.get('type').value === 'email'">
+      <ion-label position="stacked">Введите номер телефона</ion-label>
+      <ion-input placeholder="Например: 79995550001" formControlName="phone"></ion-input>
+    </ion-item>
+
+    <ion-item [hidden]="invitationForm.get('type').value === 'phone'">
+      <ion-label position="stacked">Введите email</ion-label>
+      <ion-input placeholder="Например: test@email.ru" formControlName="email"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="sendInvite()">
+    <ion-icon name="send-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

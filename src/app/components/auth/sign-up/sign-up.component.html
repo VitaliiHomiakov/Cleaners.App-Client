@@ -15,20 +15,25 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
-      <ion-input name="email" type="email" [placeholder]="'Email'" formControlName="email"></ion-input>
+      <ion-input name="email" type="email" placeholder="Email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Телефон</ion-label>
-      <ion-input name="phone" type="text" [placeholder]="'Телефон'" formControlName="phone"></ion-input>
+      <ion-input name="phone" type="text" placeholder="Телефон" formControlName="phone"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Пароль</ion-label>
-      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'" [placeholder]="'Пароль'" formControlName="password"></ion-input>
+      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'" placeholder="Пароль" formControlName="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Подтверждение</ion-label>
-      <ion-input name="confirm" [type]="showPassword.checked ? 'string' : 'password'" [placeholder]="'Подтверждение пароля'"
+      <ion-input name="confirm" [type]="showPassword.checked ? 'string' : 'password'" placeholder="Подтверждение пароля"
                  formControlName="confirmPassword"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Код приглашения</ion-label>
+      <ion-input name="code" placeholder="Необязательно: код приглашения"
+                 formControlName="code"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Показать пароль</ion-label>

@@ -81,7 +81,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         }),
         switchMap(tokens => {
           this.refreshTokenSubject$.next(tokens);
-          localStorage.setItem('refreshToken', tokens.refreshToken);
+          localStorage.setItem('refreshToken', tokens.refresh_token);
           localStorage.setItem('token', tokens.token);
           return next.handle(this.addTokens(request, tokens));
         }),

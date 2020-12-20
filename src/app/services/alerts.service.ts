@@ -18,4 +18,14 @@ export class AlertsService {
     });
     return toast.present();
   }
+
+  async successMessage(message: string, duration = 3000, position = 'top'): Promise<void> {
+    const toast = await this.toastController.create({
+      message,
+      duration,
+      position: position as 'top' | 'bottom' | 'middle',
+      color: 'success',
+    });
+    return toast.present();
+  }
 }

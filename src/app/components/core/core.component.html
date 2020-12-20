@@ -6,7 +6,7 @@
         <ion-note [innerText]="user.firstname"></ion-note>
 
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-          <ion-item (click)="open(i, p.url)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex === i">
+          <ion-item (click)="open(i, p.url)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="isSelected(p.url)">
             <ion-icon slot="start" [icon]="p.icon"></ion-icon>
             <ion-label>{{ p.title }}</ion-label>
           </ion-item>

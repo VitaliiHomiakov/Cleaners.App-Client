@@ -14,4 +14,8 @@ export class UserService {
   getBarCode(): Observable<UserBarcode> {
     return this.http.get<UserBarcode>('/core/user/barcode');
   }
+
+  sendInvite(params: any): Observable<any> {
+    return this.http.post<any>('/core/user/invite', params);
+  }
 }
