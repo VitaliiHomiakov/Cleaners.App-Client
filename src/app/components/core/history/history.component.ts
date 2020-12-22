@@ -4,7 +4,7 @@ import {AppState} from '../../../store/reducers';
 import {selectHistories} from '../../../store/selectors/history.selectors';
 import * as moment from 'moment';
 import {filter, take} from 'rxjs/operators';
-import {AddHistory, GetHistory} from '../../../store/actions/history.actions';
+import {GetHistory} from '../../../store/actions/history.actions';
 
 @Component({
   selector: 'cleaners-history',

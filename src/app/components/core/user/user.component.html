@@ -30,14 +30,16 @@
   </ion-card>
   <ion-list>
     <ion-list-header>Последние операции</ion-list-header>
-    <ion-item>Отправлено приглашение</ion-item>
-    <ion-item>Начислены баллы</ion-item>
-    <ion-item>Начислены баллы</ion-item>
-    <ion-item>Начислены баллы</ion-item>
-    <ion-item>Начислены баллы</ion-item>
-    <ion-item>Начислены баллы</ion-item>
-    <ion-item>Начислены баллы</ion-item>
-    <ion-item>Начислены баллы</ion-item>
-    <ion-item>Начислены баллы</ion-item>
+    <ion-item *ngFor="let history of userHistory$ | async">
+      <ion-label class="ion-text-wrap">
+        <ion-text color="primary">
+          <h3 [innerText]="history.value"></h3>
+        </ion-text>
+        <p [innerText]="history.message"></p>
+        <ion-text>
+          <p [innerText]="moment(history.date).format('DD.MM.YYYY')"></p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>
