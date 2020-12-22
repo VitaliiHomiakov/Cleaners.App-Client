@@ -36,7 +36,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userHistory$.subscribe(r => console.log(7771, r))
   }
 
   refresh($event: RefreshEvent): void {
