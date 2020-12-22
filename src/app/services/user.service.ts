@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User, UserBarcode} from '../interfaces/user.interface';
+import {ResponseMessage} from '../interfaces/common.interface';
 
 @Injectable()
 export class UserService {
@@ -15,7 +16,11 @@ export class UserService {
     return this.http.get<UserBarcode>('/core/user/barcode');
   }
 
-  sendInvite(params: any): Observable<any> {
-    return this.http.post<any>('/core/user/invite', params);
+  sendInvite(params: any): Observable<ResponseMessage> {
+    return this.http.post<ResponseMessage>('/core/user/invite', params);
+  }
+
+  updatePassword(params: any): Observable<ResponseMessage> {
+    return this.http.patch<ResponseMessage>('/core/user/password', params);
   }
 }

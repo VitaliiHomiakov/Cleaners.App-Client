@@ -33,5 +33,13 @@ export class UserEffects {
     ))
   ), {dispatch: false});
 
+  updateProfilePassword$ = createEffect(() => this.actions$.pipe(
+    ofType(userActions.UpdateUserPassword),
+    mergeMap(payload => this.userService.updatePassword(payload.passwords).pipe(
+      tap(res => this.alertService.successMessage(res.message)),
+      catchError(error => throwError(error))
+    ))
+  ), {dispatch: false});
+
   constructor(private actions$: Actions, private userService: UserService, private alertService: AlertsService) {}
 }

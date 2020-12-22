@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./history/history.module').then(m => m.HistoryModule)
   },
   {
+    path: 'security',
+    loadChildren: () => import('./security/security.module').then(m => m.SecurityModule)
+  },
+  {
     path: '',
     redirectTo: 'user',
     pathMatch: 'full'

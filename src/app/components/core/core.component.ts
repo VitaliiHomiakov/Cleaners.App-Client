@@ -44,7 +44,7 @@ export class CoreComponent implements OnInit {
     },
     {
       title: 'Безопасность',
-      url: '/core/folder/Favorites',
+      url: '/core/security',
       icon: 'lock-closed-outline'
     },
     {

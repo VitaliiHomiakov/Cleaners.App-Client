@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Безопасность</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="securityForm" (ngSubmit)="savePassword()">
+    <ion-item>
+      <ion-label position="stacked">Старый пароль</ion-label>
+      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'"
+                 formControlName="oldPassword"
+                 [placeholder]="'Введите старый пароль'"></ion-input>
+    </ion-item>
+    <ion-item-divider>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label position="stacked" [innerText]="'Новый пароль'"></ion-label>
+      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'"
+                 formControlName="newPassword"
+                 [placeholder]="'Введите новый пароль'"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" [innerText]="'Подтверждение пароля'"></ion-label>
+      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'"
+                 formControlName="confirmPassword"
+                 [placeholder]="'Введите подтверждение пароля'"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" [innerText]="'Показать пароль'"></ion-label>
+      <ion-checkbox #showPassword [value]="false"></ion-checkbox>
+    </ion-item>
+  </form>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button id="save-password" (click)="savePassword()" color="success">
+    <ion-icon name="save"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
