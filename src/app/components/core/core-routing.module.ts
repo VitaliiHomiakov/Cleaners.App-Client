@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./invitations/invitations.module').then(m => m.InvitationsModule)
   },
   {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then(m => m.HistoryModule)
+  },
+  {
     path: '',
     redirectTo: 'user',
     pathMatch: 'full'

@@ -7,3 +7,13 @@ export const selectHistory = createSelector(
   historyState,
   (state) => state
 );
+
+export const selectHistories = createSelector(
+  selectHistory,
+  state => state.data
+);
+
+export const selectFirstHistories = createSelector(
+  selectHistory,
+  state => state.data.items.slice(0, 5)
+);

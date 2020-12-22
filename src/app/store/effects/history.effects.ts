@@ -13,7 +13,11 @@ export class HistoryEffects {
   getHistory$ = createEffect(() => this.actions$.pipe(
     ofType(historyActions.GetHistory),
     switchMap(payload => this.historyService.getHistory(payload.params).pipe(
-      map(history => historyActions.SetHistory({history})),
+      map(history => {
+        return history.pagination.start === 0 ?
+          historyActions.SetHistory({history}) :
+          historyActions.AddHistory({history});
+      }),
       catchError(error => throwError(error))
     ))
   ));

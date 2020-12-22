@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar [color]="'primary'">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>История</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="histories$ | async as histories">
+  <ion-list>
+    <ion-item *ngFor="let history of histories.items">
+      <ion-label class="ion-text-wrap">
+        <ion-text color="primary">
+          <h3 [innerText]="history.value"></h3>
+        </ion-text>
+        <p [innerText]="history.message"></p>
+        <ion-text>
+          <p [innerText]="moment(history.date).format('DD.MM.YYYY')"></p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-item *ngIf="!histories.items.length">История пуста</ion-item>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

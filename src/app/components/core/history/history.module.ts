@@ -2,12 +2,10 @@ import {IonicModule} from '@ionic/angular';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CoreComponent} from './core.component';
 import {RouterModule} from '@angular/router';
-import {UserModule} from './user/user.module';
-import {CoreRoutingModule} from './core-routing.module';
+import {HistoryRoutingModule} from './history-routing.module';
+import {HistoryComponent} from './history.component';
 import {ReactiveComponentModule} from '@ngrx/component';
-import {PipesModule} from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -16,11 +14,9 @@ import {PipesModule} from '../../pipes/pipes.module';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    CoreRoutingModule,
-    UserModule,
-    PipesModule,
+    HistoryRoutingModule,
     ReactiveComponentModule
   ],
-  declarations: [CoreComponent]
+  declarations: [HistoryComponent]
 })
-export class CoreModule {}
+export class HistoryModule {}
