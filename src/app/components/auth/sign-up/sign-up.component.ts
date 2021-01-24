@@ -3,7 +3,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Store} from '@ngrx/store';
 import {AppState} from '@capacitor/core';
 import {SignUp} from '../../../store/actions/auth.actions';
-// import {SignUp} from '../../../store/actions/auth.actions';
+import {ModalController} from '@ionic/angular';
+import {UserAgreementComponent} from '../user-agreement/user-agreement.component';
+import {PrivacyPolicyComponent} from '../privacy-policy/privacy-policy.component';
 
 @Component({
   selector: 'fit-sign-up',
@@ -24,10 +26,24 @@ export class SignUpComponent {
     code: new FormControl(''),
   });
 
-  constructor(private store$: Store<AppState>) {}
+  constructor(private store$: Store<AppState>, private modalController: ModalController) {}
 
   signUp(): void {
     this.store$.dispatch(SignUp({params: this.signUpForm.value}));
+  }
+
+  async openUserAgreement(): Promise<void> {
+    const userAgreement = await this.modalController.create({
+      component: UserAgreementComponent,
+    });
+    await userAgreement.present();
+  }
+
+  async openPrivacyPolicy(): Promise<void> {
+    const privacyPolicy = await this.modalController.create({
+      component: PrivacyPolicyComponent,
+    });
+    await privacyPolicy.present();
   }
 
 }

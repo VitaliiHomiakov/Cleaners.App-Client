@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {AppState} from '../../../store/reducers';
 import {selectHistories} from '../../../store/selectors/history.selectors';
 import * as moment from 'moment';
-import {filter, take} from 'rxjs/operators';
+import {delay, filter, map, take, tap, withLatestFrom} from 'rxjs/operators';
 import {GetHistory} from '../../../store/actions/history.actions';
 
 @Component({
@@ -28,14 +28,16 @@ export class HistoryComponent implements OnInit {
   }
 
   loadMore($event: CustomEvent): void {
-    this.store$.pipe(
-      select(selectHistories),
+    this.histories$.pipe(
       filter(historyData => historyData.items.length < historyData.pagination.total || !historyData.pagination.total),
       take(1),
     ).subscribe(historyData => {
       this.store$.dispatch(GetHistory({params: {
         start: historyData.pagination.start + historyData.pagination.limit
       }}));
+      if (historyData.items.length + historyData.pagination.limit >= historyData.pagination.total) {
+        ($event.target as EventTarget & {disabled: boolean}).disabled = true;
+      }
       ($event.target as EventTarget & {complete}).complete();
     });
   }

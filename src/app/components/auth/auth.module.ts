@@ -6,6 +6,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './login/login.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
+import {UserAgreementComponent} from './user-agreement/user-agreement.component';
+import {PrivacyPolicyComponent} from './privacy-policy/privacy-policy.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import {SignUpComponent} from './sign-up/sign-up.component';
     AuthRoutingModule,
     ReactiveFormsModule,
   ],
-  declarations: [LoginComponent, SignUpComponent]
+  declarations: [LoginComponent, SignUpComponent, UserAgreementComponent, PrivacyPolicyComponent]
 })
 export class AuthModule {}

@@ -51,11 +51,11 @@
         <ion-col class="agreements" size="7">
           <ion-item-group>
             <ion-label class="agreements-item">Условия</ion-label>
-            <ion-router-link class="agreements-item">Пользовательское соглашение</ion-router-link>
+            <ion-router-link (click)="openUserAgreement()" class="agreements-item">Пользовательское соглашение</ion-router-link>
             <ion-label class="agreements-item">и</ion-label>
           </ion-item-group>
           <ion-item-group>
-            <ion-router-link class="agreements-item">Условие конфиденциальности</ion-router-link>
+            <ion-router-link (click)="openPrivacyPolicy()" class="agreements-item">Условие конфиденциальности</ion-router-link>
           </ion-item-group>
         </ion-col>
       </ion-row>

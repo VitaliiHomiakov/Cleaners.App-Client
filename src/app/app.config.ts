@@ -1,3 +1,3 @@
 export const CONF = {
-  API: 'https://demo.soft-buy.ru',
+  API: 'https://xn----ctbbjbbw4dcdfe.xn--p1ai',
 };

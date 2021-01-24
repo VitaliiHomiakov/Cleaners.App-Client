@@ -10,8 +10,8 @@
       <ion-input name="email" type="email" [placeholder]="'Введите email или телефон'" formControlName="emailOrPhone"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Пасспорт</ion-label>
-      <ion-input name="password" [type]="showPassword.checked ? 'string' : 'password'" [placeholder]="'Пасспорт'" formControlName="password"></ion-input>
+      <ion-label position="stacked">Пароль</ion-label>
+      <ion-input [type]="showPassword.checked ? 'string' : 'password'" [placeholder]="'Пароль'" formControlName="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Показать пароль</ion-label>

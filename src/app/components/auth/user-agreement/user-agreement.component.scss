@@ -1,0 +1,13 @@
+::ng-deep .user-agreement-text {
+  padding: 10px 0;
+  .description {
+    text-align: justify;
+  }
+  .title {
+    margin: 5px 0;
+  }
+  ul {
+    padding-left: 26px;
+    list-style-type: disc;
+  }
+}

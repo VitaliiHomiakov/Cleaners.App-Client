@@ -32,11 +32,11 @@ export class CoreComponent implements OnInit {
       url: '/core/user',
       icon: 'person-outline'
     },
-    {
-      title: 'Пригласить',
-      url: '/core/invitations',
-      icon: 'add-circle-outline'
-    },
+    // {
+    //   title: 'Пригласить',
+    //   url: '/core/invitations',
+    //   icon: 'add-circle-outline'
+    // },
     {
       title: 'История',
       url: '/core/history',
